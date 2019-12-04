@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>Add a new Transaction:</p>
+
+<form action = "{% url 'shop_management_main:new_transaction' day.id %}"
+    method = 'post'>
+{% csrf_token %}
+{{form.as_p}}
+<button name = "submit">Add Transaction</button>
+</form>
+{% endblock content %}

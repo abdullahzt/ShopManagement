@@ -22,8 +22,9 @@ class TransactionDay(models.Model):
 
 class Transaction(models.Model):
     """Table to represent all transactions occured on a day"""
-    day     = models.ForeignKey(TransactionDay, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    day      = models.ForeignKey(TransactionDay, on_delete=models.CASCADE)
+    product  = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.DecimalField(max_digits=100000, decimal_places=1)
 
     def __str__(self):
         """Return the string representation of the model."""

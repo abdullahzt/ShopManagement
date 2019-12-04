@@ -14,6 +14,13 @@ urlpatterns = [
     path('new_product/', views.new_product, name='new_product'),
     #Transaction Page.
     path('transaction_days/', views.transaction_days, name='transaction_days'),
-    #Individual transactions
-    # path('transactions/', views.transactions, name='transactions'),
+    # Individual transactions
+    path('transactions/<int:transaction_day_id>/', views.transactions,
+        name='transactions'),
+    #url to add a new transaction Day
+    path('new_transaction_day/', views.new_transaction_day,
+        name='new_transaction_day'),
+    #add new transaction.
+    path('new_transaction/<int:transaction_day_id>/', views.new_transaction,
+        name='new_transaction'),
 ]

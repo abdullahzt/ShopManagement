@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<p>
+  <a href="{% url 'shop_management_main:new_transaction' day.id %}">
+      Add new Transaction
+  </a>
+</p>
+
+{% for transaction in transactions %}
+<p>
+{{ transaction }}
+</p>
+{% endfor %}
+
+{% endblock content %}
