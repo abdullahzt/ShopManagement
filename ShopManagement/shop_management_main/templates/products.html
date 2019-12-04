@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>
+  <a href="{% url 'shop_management_main:new_product' %}">Add New Product</a>
+</p>
+{% for product in products %}
+<p>{{ product }}    {{ product.price }}</p>
+{% endfor %}
+{% endblock content %}
