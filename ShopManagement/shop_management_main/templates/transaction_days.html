@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for transaction_day in transaction_days %}
+<p>
+  <!-- <a href="{% url 'shop_management_main:transactions' transaction_day.id %}"> -->
+      {{ transaction_day }}
+</p>
+{% endfor %}
+
+{% endblock content %}

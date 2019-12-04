@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, TransactionDay
 from .forms import ProductForm
 
 def index(request):
@@ -30,8 +30,11 @@ def new_product(request):
     context = {'form' : form}
     return render(request, 'new_product.html', context)
 
-def transactions(request):
+def transaction_days(request):
     """Menu to show all transaction days"""
-    transaction_day = TransactionDay.objects.all()
-    context = {'products' : products}
-    return render(request, 'products.html', context)
+    transaction_days = TransactionDay.objects.all()
+    context = {'transaction_days' : transaction_days}
+    return render(request, 'transaction_days.html', context)
+
+# def transactions(request, transaction_day_id):
+#     """A page that shows transactions of a particular day"""
