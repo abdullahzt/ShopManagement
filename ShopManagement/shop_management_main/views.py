@@ -75,7 +75,7 @@ def new_transaction(request, transaction_day_id):
     user_check(request, day)
     if request.method != 'POST':
         #No data submitted; create a blank form.
-        form = TransactionForm()
+        form = TransactionForm(user=request.user)
     else:
         #Post data submitted; process data.
         form = TransactionForm(data=request.POST)

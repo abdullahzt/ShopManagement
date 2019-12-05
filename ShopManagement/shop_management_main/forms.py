@@ -18,3 +18,9 @@ class TransactionForm(forms.ModelForm):
             'product' : 'Enter product',
             'quantity' : 'Enter quantity'
         }
+    def __init__(self, user=None, **kwargs):
+        super(TransactionForm, self).__init__(**kwargs)
+        if user:
+            self.fields['product'].queryset = (
+                Product.objects.filter(owner=user)
+            )
