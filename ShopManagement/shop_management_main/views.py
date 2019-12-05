@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Product, TransactionDay
-from .forms import ProductForm, TransactionForm
+from .forms import ProductForm, TransactionForm, Transaction
 
 def index(request):
     """The homepage for our app"""
@@ -32,7 +32,7 @@ def new_product(request):
 
 def transaction_days(request):
     """Menu to show all transaction days."""
-    transaction_days = TransactionDay.objects.all()
+    transaction_days = TransactionDay.objects.all().order_by('-date')
     context = {'transaction_days' : transaction_days}
     return render(request, 'transaction_days.html', context)
 
@@ -68,9 +68,16 @@ def new_transaction(request, transaction_day_id):
         #Post data submitted; process data.
         form = TransactionForm(data=request.POST)
         if form.is_valid():
+            transactions = day.transaction_set.all()
             new_transaction = form.save(commit=False)
             new_transaction.day = day
-            new_transaction.save()
+            for transaction in transactions:
+                if transaction.product == new_transaction.product:
+                    transaction.quantity += new_transaction.quantity
+                    transaction.save()
+                    break
+            else:
+                new_transaction.save()
             return redirect('shop_management_main:transactions',
                 transaction_day_id=transaction_day_id)
 
