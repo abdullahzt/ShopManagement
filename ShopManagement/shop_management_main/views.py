@@ -1,17 +1,22 @@
 from django.shortcuts import render, redirect
 from .models import Product, TransactionDay
 from .forms import ProductForm, TransactionForm, Transaction
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
+@login_required
 def index(request):
     """The homepage for our app"""
     return render(request, 'index.html')
 
+@login_required
 def products(request):
     """The page that contain all of the products."""
-    products = Product.objects.all()
+    products = Product.objects.filter(owner=request.user)
     context = {'products' : products}
     return render(request, 'products.html', context)
 
+@login_required
 def new_product(request):
     """Add a new product."""
     if request.method != 'POST':
@@ -30,12 +35,15 @@ def new_product(request):
     context = {'form' : form}
     return render(request, 'new_product.html', context)
 
+@login_required
 def transaction_days(request):
     """Menu to show all transaction days."""
-    transaction_days = TransactionDay.objects.all().order_by('-date')
+    transaction_days = (
+        TransactionDay.objects.filter(owner=request.user).order_by('-date'))
     context = {'transaction_days' : transaction_days}
     return render(request, 'transaction_days.html', context)
 
+@login_required
 def new_transaction_day(request):
     """Add a new transaction day if it doesn't exist."""
     count = 0
@@ -48,19 +56,23 @@ def new_transaction_day(request):
         new_day.delete()
     return redirect('shop_management_main:transaction_days')
 
+@login_required
 def transactions(request, transaction_day_id):
     """A page that shows transactions of a particular day."""
-    transaction_day = TransactionDay.objects.get(id=transaction_day_id)
-    transactions = transaction_day.transaction_set.all()
+    day = TransactionDay.objects.get(id=transaction_day_id)
+    user_check(request, day)
+    transactions = day.transaction_set.all()
     context = {
         'transactions' : transactions,
-        'day' : transaction_day
+        'day' : day
         }
     return render(request, 'transactions.html', context)
 
+@login_required
 def new_transaction(request, transaction_day_id):
     """Adding a new transaction"""
     day = TransactionDay.objects.get(id=transaction_day_id)
+    user_check(request, day)
     if request.method != 'POST':
         #No data submitted; create a blank form.
         form = TransactionForm()
@@ -87,3 +99,8 @@ def new_transaction(request, transaction_day_id):
         'day' : day
         }
     return render(request, 'new_transaction.html', context)
+
+def user_check(request, model):
+    """checks if model being requested belong to user"""
+    if model.owner != request.user:
+        raise Http404
