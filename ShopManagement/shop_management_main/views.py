@@ -48,7 +48,9 @@ def new_transaction_day(request):
     """Add a new transaction day if it doesn't exist."""
     count = 0
     day_list = TransactionDay.objects.filter(owner=request.user).all()
-    new_day = TransactionDay.objects.create(owner=request.user)
+    #Create new transaction with sum = 0.
+    new_day = TransactionDay.objects.create(owner=request.user, sum=0)
+    #Checks if day already exist then dont create new.
     for item in day_list:
         if item.date == new_day.date:
             count += 1
@@ -60,11 +62,13 @@ def new_transaction_day(request):
 def transactions(request, transaction_day_id):
     """A page that shows transactions of a particular day."""
     day = TransactionDay.objects.get(id=transaction_day_id)
+    sum = day.sum
     user_check(request, day)
     transactions = day.transaction_set.all()
     context = {
         'transactions' : transactions,
-        'day' : day
+        'day' : day,
+        'sum' : sum
         }
     return render(request, 'transactions.html', context)
 
@@ -83,6 +87,10 @@ def new_transaction(request, transaction_day_id):
             transactions = day.transaction_set.all()
             new_transaction = form.save(commit=False)
             new_transaction.day = day
+            #Update the sum of current transaction day.
+            day.sum += new_transaction.product.price * new_transaction.quantity
+            day.save()
+            #if product is laready sold, just update the quantity.
             for transaction in transactions:
                 if transaction.product == new_transaction.product:
                     transaction.quantity += new_transaction.quantity
@@ -102,5 +110,6 @@ def new_transaction(request, transaction_day_id):
 
 def user_check(request, model):
     """checks if model being requested belong to user"""
+    #Ensures user does not access anything by links.
     if model.owner != request.user:
         raise Http404
