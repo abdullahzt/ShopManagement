@@ -3,9 +3,10 @@ from django.contrib.auth.models import User
 
 class Product(models.Model):
     """Products the shopkeeper sells in his shop"""
-    text   = models.CharField(max_length=50)
-    price  = models.DecimalField(max_digits=8, decimal_places=2)
-    owner  = models.ForeignKey(User, on_delete=models.CASCADE)
+    text       = models.CharField(max_length=50)
+    price      = models.DecimalField(max_digits=8, decimal_places=2)
+    buy_price  = models.DecimalField(max_digits=8, decimal_places=2)
+    owner      = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         """Return the string representation of the model."""
@@ -16,6 +17,7 @@ class TransactionDay(models.Model):
     owner  = models.ForeignKey(User, on_delete=models.CASCADE)
     date   = models.DateField(auto_now_add=True)
     sum    = models.DecimalField(max_digits=12, decimal_places=2)
+    profit = models.DecimalField(max_digits=12, decimal_places=2)
 
     def __str__(self):
         """Return the string representation of the model."""

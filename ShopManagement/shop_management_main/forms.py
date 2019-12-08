@@ -4,10 +4,11 @@ from .models import Product, Transaction
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['text', 'price']
+        fields = ['text', 'price', 'buy_price']
         labels = {
             'text'  : 'Enter product name',
-            'price' : 'Enter price'
+            'price' : 'Enter selling price',
+            'buy_price' : 'Enter purchase price'
         }
 
 class TransactionForm(forms.ModelForm):

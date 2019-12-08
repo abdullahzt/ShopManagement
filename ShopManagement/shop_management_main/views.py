@@ -49,7 +49,7 @@ def new_transaction_day(request):
     count = 0
     day_list = TransactionDay.objects.filter(owner=request.user).all()
     #Create new transaction with sum = 0.
-    new_day = TransactionDay.objects.create(owner=request.user, sum=0)
+    new_day = TransactionDay.objects.create(owner=request.user, sum=0, profit=0)
     #Checks if day already exist then dont create new.
     for item in day_list:
         if item.date == new_day.date:
@@ -68,7 +68,6 @@ def transactions(request, transaction_day_id):
     context = {
         'transactions' : transactions,
         'day' : day,
-        'sum' : sum
         }
     return render(request, 'transactions.html', context)
 
@@ -87,10 +86,12 @@ def new_transaction(request, transaction_day_id):
             transactions = day.transaction_set.all()
             new_transaction = form.save(commit=False)
             new_transaction.day = day
-            #Update the sum of current transaction day.
+            #Update the sum and profit of current transaction day.
             day.sum += new_transaction.product.price * new_transaction.quantity
+            day.profit += ((new_transaction.product.price -
+            new_transaction.product.buy_price) * new_transaction.quantity)
             day.save()
-            #if product is laready sold, just update the quantity.
+            #if product is already sold, just update the quantity.
             for transaction in transactions:
                 if transaction.product == new_transaction.product:
                     transaction.quantity += new_transaction.quantity
