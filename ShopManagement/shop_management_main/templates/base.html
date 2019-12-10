@@ -1,11 +1,32 @@
-<p>
-  <a href="{% url 'shop_management_main:index' %}">Home</a> -
-  {% if user.is_authenticated %}
-  Hello, {{ user.username }}.
-  <a href="{% url 'users:logout' %}">Log out</a>
-{% else %}
-  <a href="{% url 'users:register' %}">Register</a> -
-  <a href="{% url 'users:login' %}">Log in</a>
-{% endif %}
-</p>
+{% load static %}
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel='stylesheet' href='{% static 'base.css' %}' />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body id='body'>
+            <nav
+            id='mainHeader'>
+              <div class="nav-wrapper">
+                <div id='brand-logo' class="brand-logo">
+                  <a href="#" >Semeter </a>
+                </div>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="{% url 'shop_management_main:index' %}">Home</a></li>
+                  {% if user.is_authenticated %}
+                    Hello, {{ user.username }}.
+                    <li><a href="{% url 'users:logout' %}">Log out</a></li>
+                  {% else %}
+                    <li><a href="{% url 'users:login' %}">Login</a></li>
+                    <li><a href="{% url 'users:register' %}">Signup</a></li>
+                  {% endif %}
+                  <!-- <li><a href="sass.html">Dashboard</a></li>
+                  <li><a href="badges.html">Products</a></li>
+                  <li><a href="badges.html">Add Transaction</a></li> -->
+                </ul>
+              </div>
+            </nav>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
 {% block content %}{% endblock content %}
