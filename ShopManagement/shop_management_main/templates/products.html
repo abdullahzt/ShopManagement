@@ -1,9 +1,65 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>
-  <a href="{% url 'shop_management_main:new_product' %}">Add New Product</a>
-</p>
-{% for product in products %}
-<p>{{ product }}    {{ product.price }}</p>
-{% endfor %}
+{% load static %}
+
+<div class='productsPage'>
+    <div>
+      <h4>Products</h4>
+    </div>
+    <div class="products">
+      <div class="headingTable">
+        <div class="title">
+          Product Name
+        </div>
+        <div class="price">
+          Price
+        </div>
+      </div>
+        {% for product in products %}
+        <div class="product">
+          <div class="title">
+              {{ product }} 
+          </div>
+          <div class="price">
+              Rs {{ product.price }}
+          </div>
+          </div>
+        {% endfor %}
+    </div>
+    <div class="addMore">
+      <!-- <button>
+          <a href="{% url 'shop_management_main:new_product' %}">  <i class="material-icons">add</i>
+          </a>
+      </button> -->
+      <button id='openNewProductForm'>
+            <i class="material-icons">add</i>
+      </button>
+    </div>
+    <div id="newProductForm">
+        
+        <form action = "{% url 'shop_management_main:new_product' %}" method = 'post'>
+            <div id='closeButtonWrapper'>
+                <button id='closeNewProductForm'>
+                    <i class="material-icons">close</i>
+                </button>
+            </div>
+            <h5>Add a new Product</h5>
+            {% csrf_token %}
+            {{form.as_p}}
+            <button name = "submit">Add Product</button>
+        </form>
+  </div>
+  </div>
+
+
+
+  <!-- new product form  -->
+
+
+<script src='{% static 'newProductToggler.js' %}' ></script>
+  
+
+
 {% endblock content %}
+
+

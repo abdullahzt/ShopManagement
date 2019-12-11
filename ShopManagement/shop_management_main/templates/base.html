@@ -2,31 +2,50 @@
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link rel='stylesheet' href='{% static 'base.css' %}' />
+        <link rel='stylesheet' href='{% static 'colors.css' %}' />
+        <link rel='stylesheet' href='{% static 'auth.css' %}' />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
+    {% if user.is_authenticated %}
     <body id='body'>
             <nav
-            id='mainHeader'>
+            class='gradientBackground'>
               <div class="nav-wrapper">
                 <div id='brand-logo' class="brand-logo">
                   <a href="#" >Semeter </a>
                 </div>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li><a href="{% url 'shop_management_main:index' %}">Home</a></li>
-                  {% if user.is_authenticated %}
-                    Hello, {{ user.username }}.
+                    <li><a href="{% url 'shop_management_main:products' %}">Products</a></li>
+<li><a href="{% url 'shop_management_main:transaction_days' %}">
+    Transactions</a></li>
                     <li><a href="{% url 'users:logout' %}">Log out</a></li>
-                  {% else %}
-                    <li><a href="{% url 'users:login' %}">Login</a></li>
-                    <li><a href="{% url 'users:register' %}">Signup</a></li>
-                  {% endif %}
                   <!-- <li><a href="sass.html">Dashboard</a></li>
                   <li><a href="badges.html">Products</a></li>
                   <li><a href="badges.html">Add Transaction</a></li> -->
                 </ul>
               </div>
             </nav>
+            
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+      </body>
+      {% else %}
+      <body id='authBody'>
+          <nav id='primaryBackground'>
+              <div class="nav-wrapper">
+                <a href="#" class="brand-logo center">Semeter</a>
+                <!-- <ul id="nav-mobile" class="left hide-on-med-and-down">
+                  <li><a href="sass.html">Sass</a></li>
+                  <li><a href="badges.html">Components</a></li>
+                  <li><a href="collapsible.html">JavaScript</a></li>
+                </ul> -->
+              </div>
+            </nav>
 
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+      </body>
+      {% endif %}
+<!-- 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    </body>
+    </body> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 {% block content %}{% endblock content %}

@@ -6,3 +6,180 @@
 #mainHeader {
     background: #232;
 }
+
+
+.gradientBackground{
+    background: url(https://www.3ctele.com/wp-content/uploads/2015/12/3c-gradient-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
+/* products Page styling  */
+
+.productsPage {
+
+    flex-basis: 100%;
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+}
+
+.productsPage > div{
+    padding: 10px;
+}
+
+.products {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+.products .headingTable {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background: whitesmoke;
+
+}
+
+.headingTable .title {
+    flex-basis: 85%;
+}
+
+.headingTable .price {
+    flex-basis: 15%;
+}
+
+.products .product {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+
+}
+.product .title {
+    flex-basis: 85%;
+}
+
+.product .price {
+    flex-basis: 15%;
+}
+
+.addMore {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.addMore button {
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    margin: 5px;
+    color: white;
+    background: #0484b2;
+}
+
+.addMore a {
+    color: white;
+}
+
+/* end products styling */
+
+
+/* add new product styling  */
+
+#newProductForm {
+    flex-basis: 100%;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top : 0;
+    align-items: center;
+    background: #214654b8;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: 0.7s;
+    transform: translateX(-2000px);
+}
+
+#newProductForm form {
+
+    padding: 20px;
+    background:white;
+    font-size: medium;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+
+}
+
+
+#newProductForm label {
+
+    color: black;
+    font-size: medium;
+
+}
+
+#newProductForm button{
+
+    width: 100%;
+    background: #222;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+
+}
+
+#newProductForm #otheropt {
+    padding: 5px;
+}
+
+#closeNewProductForm {
+
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+
+}
+
+#closeButtonWrapper {
+
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 100%;
+    width: 100%;
+    justify-content: flex-end;
+
+}
+
+#newProductForm #closeNewProductForm {
+    background: #222;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    width: 50px;
+
+}
+
+
+/* end add new product styling */
