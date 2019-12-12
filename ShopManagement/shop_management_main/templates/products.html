@@ -3,8 +3,13 @@
 {% load static %}
 
 <div class='productsPage'>
-    <div>
+    <div class='header'>
       <h4>Products</h4>
+      <div class="addMore">
+          <button id='openNewProductForm'>
+                <i class="material-icons">add</i>
+          </button>
+        </div>
     </div>
     <div class="products">
       <div class="headingTable">
@@ -26,15 +31,11 @@
           </div>
         {% endfor %}
     </div>
-    <div class="addMore">
-      <!-- <button>
-          <a href="{% url 'shop_management_main:new_product' %}">  <i class="material-icons">add</i>
-          </a>
-      </button> -->
+    <!-- <div class="addMore">
       <button id='openNewProductForm'>
             <i class="material-icons">add</i>
       </button>
-    </div>
+    </div> -->
     <div id="newProductForm">
         
         <form action = "{% url 'shop_management_main:new_product' %}" method = 'post'>
@@ -48,7 +49,7 @@
             {{form.as_p}}
             <button name = "submit">Add Product</button>
         </form>
-  </div>
+    </div>
   </div>
 
 

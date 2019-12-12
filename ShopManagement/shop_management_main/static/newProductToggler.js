@@ -1,15 +1,15 @@
 
 // add new product model listener toggler
-let openButton = document.getElementById('openNewProductForm')
+document.addEventListener('DOMContentLoaded', () => {
 
-openButton.addEventListener('click', () => {
+document.getElementById('openNewProductForm').addEventListener('click', () => {
     let modal = document.querySelector('#newProductForm')
     modal.style.transform = 'translateX(0px)'
 })
 
-let closeButton = document.querySelector('#closeNewProductForm');
 
-closeButton.addEventListener('click', () => {
+
+document.querySelector('#closeNewProductForm').addEventListener('click', () => {
     let modal = document.querySelector('#newProductForm')
     modal.style.transform = 'translateX(-2000px)'
     // let modal = document.querySelector('#newProductForm')
@@ -28,4 +28,5 @@ closeButton.addEventListener('click', () => {
 document.querySelector('#newProductForm').addEventListener('submit', () => {
     let modal = document.querySelector('#newProductForm')
     modal.style.transform = 'translateX(-2000px)'
+})
 })

@@ -3,9 +3,9 @@
 {% block content %}
 <div id='authWrapper'>
 
-{% if form.errors %}
+<!-- {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+{% endif %} -->
 <form method="post" action="{% url 'users:login' %}">
   <h5>Log in to your account </h5>
   {% csrf_token %}

@@ -84,9 +84,45 @@ def transactions(request, transaction_day_id):
     sum = day.sum
     user_check(request, day)
     transactions = day.transaction_set.all()
+
+    # testing . ===
+    day = TransactionDay.objects.get(id=transaction_day_id)
+    user_check(request, day)
+    if request.method != 'POST':
+        #No data submitted; create a blank form.
+        form = TransactionForm(user=request.user)
+    else:
+        #Post data submitted; process data.
+        form = TransactionForm(data=request.POST)
+        if form.is_valid():
+            transactions = day.transaction_set.all()
+            new_transaction = form.save(commit=False)
+            new_transaction.day = day
+            #Update the sum and profit of current transaction day.
+            day.sum += new_transaction.product.price * new_transaction.quantity
+            day.profit += ((new_transaction.product.price -
+            new_transaction.product.buy_price) * new_transaction.quantity)
+            day.save()
+            #if product is already sold, just update the quantity.
+            for transaction in transactions:
+                if transaction.product == new_transaction.product:
+                    transaction.quantity += new_transaction.quantity
+                    transaction.save()
+                    break
+            else:
+                new_transaction.save()
+            return redirect('shop_management_main:transactions',
+                transaction_day_id=transaction_day_id)
+
+    #Display a blank or invalid form.
+    # end testing ;;
+
+
+
     context = {
         'transactions' : transactions,
         'day' : day,
+        'form' : form
         }
     return render(request, 'transactions.html', context)
 
