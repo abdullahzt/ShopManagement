@@ -10,10 +10,6 @@ def index(request):
     products = Product.objects.filter(owner=request.user)
     transaction_days = TransactionDay.objects.filter(owner=request.user).all()
 
-   
-
-
-
     context = {
         'products' : products,
         'transaction_days' : transaction_days,
@@ -174,6 +170,15 @@ def new_transaction(request, transaction_day_id):
         'day' : day
         }
     return render(request, 'new_transaction.html', context)
+
+def p_summary(request, product_id):
+    product = Product.objects.get(id=product_id)
+    transaction = product.transaction_set.all()
+    context ={
+        'product': product,
+        'transaction' : transaction
+    }
+    return render(request, 'p_summary.html', context)
 
 def user_check(request, model):
     """checks if model being requested belong to user"""

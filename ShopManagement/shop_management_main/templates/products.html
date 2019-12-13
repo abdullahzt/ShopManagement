@@ -23,7 +23,7 @@
         {% for product in products %}
         <div class="product">
           <div class="title">
-              {{ product }} 
+              <a href="{% url 'shop_management_main:p_summary' product.id %}">{{ product }}</a>
           </div>
           <div class="price">
               Rs {{ product.price }}
@@ -37,7 +37,7 @@
       </button>
     </div> -->
     <div id="newProductForm">
-        
+
         <form action = "{% url 'shop_management_main:new_product' %}" method = 'post'>
             <div id='closeButtonWrapper'>
                 <button id='closeNewProductForm'>
@@ -58,9 +58,7 @@
 
 
 <script src='{% static 'newProductToggler.js' %}' ></script>
-  
+
 
 
 {% endblock content %}
-
-

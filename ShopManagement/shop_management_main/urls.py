@@ -23,4 +23,6 @@ urlpatterns = [
     #add new transaction.
     path('new_transaction/<int:transaction_day_id>/', views.new_transaction,
         name='new_transaction'),
+    #Individual Product data.
+    path('product_analysis/<int:product_id>/', views.p_summary, name='p_summary'),
 ]

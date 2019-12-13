@@ -12,6 +12,9 @@ class Product(models.Model):
         """Return the string representation of the model."""
         return self.text
 
+    class Meta:
+        ordering = ['text']    
+
 class TransactionDay(models.Model):
     """Table to store transactions on a single day"""
     owner  = models.ForeignKey(User, on_delete=models.CASCADE)
