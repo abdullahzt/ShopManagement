@@ -7,7 +7,18 @@ from django.http import Http404
 @login_required
 def index(request):
     """The homepage for our app"""
-    return render(request, 'index.html')
+    products = Product.objects.filter(owner=request.user)
+    transaction_days = TransactionDay.objects.filter(owner=request.user).all()
+
+   
+
+
+
+    context = {
+        'products' : products,
+        'transaction_days' : transaction_days,
+    }
+    return render(request, 'index.html',context)
 
 @login_required
 def products(request):
