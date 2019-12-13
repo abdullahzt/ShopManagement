@@ -1,5 +1,16 @@
-#brandlogo {
-    padding: 10px;
+
+
+/* body {
+    background-color: whitesmoke;
+} */
+
+
+.sidenav {
+    background: url(https://www.3ctele.com/wp-content/uploads/2015/12/3c-gradient-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: opacity(0.9);
+    background-position-x: 20%;
 }
 
 
@@ -63,11 +74,15 @@
 }
 
 .headingTable .title {
-    flex-basis: 85%;
+    flex-basis: 60%;
 }
 
 .headingTable .price {
-    flex-basis: 15%;
+    flex-basis: 20%;
+}
+
+.headingTable .buy_price {
+    flex-basis: 20%;
 }
 
 .products .product {
@@ -78,12 +93,17 @@
 
 }
 .product .title {
-    flex-basis: 85%;
+    flex-basis: 60%;
 }
 
 .product .price {
-    flex-basis: 15%;
+    flex-basis: 20%;
 }
+
+.product .buy_price {
+    flex-basis: 20%;
+}
+
 
 .addMore {
     display: flex;
@@ -216,11 +236,19 @@
 
 .headWrapper .addNewTransactionButton {
 
-    width: 50px;
+    /* width: 50px;
     height: 50px;
     border-radius: 25px;
     border: none;
-    background: #0c4771;
+    background: #0c4771; */
+
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 5px;
+    color: white;
+    background: #0484b2;
 
 }
 
@@ -303,6 +331,9 @@
     padding: 5px;
     display: flex;
     justify-content: space-between;
+    font-size: large;
+    font-weight: 300;
+
 
 }
 
@@ -479,3 +510,233 @@ select {
 
 
 /* end transactions page styling */
+
+
+
+/* product summary styling */
+
+#productSummaryPage {
+
+    display: flex;
+    flex-direction: column;
+    /* padding: 10px; */
+
+}
+
+.pSummaryHeading {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: url(https://www.3ctele.com/wp-content/uploads/2015/12/3c-gradient-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    font-weight: bold;
+
+
+}
+
+#productSummaryPage > .graph {
+    padding : 0px 10px;
+}
+
+#openInDesktop {
+    display: none;
+    text-align: center;
+    border-radius: 10px;
+    /* border: #09618e solid 1px; */
+    height: 50vh;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+
+}
+
+
+@media only screen and (max-width: 1000px) {
+    canvas {
+        display: none;
+    }
+    #openInDesktop {
+        display: flex;
+        flex-direction: column;
+    }
+    
+  }
+  
+/* end priduct summary styling */
+
+/* graph styling */
+canvas {
+    background: url('https://cdn.pixabay.com/photo/2016/08/05/09/31/banner-1571861_960_720.jpg');
+}
+
+/* end graph styling */
+
+
+/* index page styling   */
+
+#mainDashboard  {
+
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: whitesmoke;
+
+}
+
+#mainStatistics {
+
+    display: flex;
+    flex-direction: column;
+    /* padding: 10px; */
+    /* border: solid 2px whitesmoke; */
+    background-color: #f9f9f9;
+
+}
+
+#tableHead {
+    font-weight: bold;
+}
+
+#mainStatistics .column:nth-child(odd) {
+    background-color: #029ccb2b;
+}
+
+#mainStatistics .column {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    
+
+}
+
+#mainStatistics .column  .label {
+    flex-basis: 50%;
+}
+
+#mainStatistics .column .inLast30 {
+    flex-basis: 25%;
+}
+
+#mainStatistics .column  .totalValue {
+    flex-basis: 25%;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  #mainStatistics .column  .label {
+        flex-basis: 20%;
+    }
+
+#mainStatistics .column .inLast30 {
+        flex-basis: 40%;
+    }
+
+#mainStatistics .column  .totalValue {
+        flex-basis: 40%;
+    }
+
+}
+
+/* end index page styling */
+
+
+
+
+/* mobile compatible styles */
+
+@media only screen and (max-width: 600px) {
+    #mainDashboard #mainStatistics {
+    font-size: small;
+    }
+
+    .productsPage header h4 {
+        font-size: x-large;
+    }
+
+    .headingTable .title {
+        flex-basis: 40%;
+    }
+    
+    .headingTable .price {
+        flex-basis: 30%;
+    }
+    
+    .headingTable .buy_price {
+        flex-basis: 30%;
+    }
+
+    .product .title {
+        flex-basis: 40%;
+    }
+    
+    .product .price {
+        flex-basis: 30%;
+    }
+    
+    .product .buy_price {
+        flex-basis: 30%;
+    }
+
+    .productsPage .header h4 {
+        font-size: 1.64rem;
+    }
+
+    .pSummaryHeading  {
+        flex-direction: column;
+    }
+
+    .headWrapper .heading {
+        font-size: 1.64rem;
+    }
+
+    #transaction_days_page .date {
+        flex-basis: 25%;
+    }
+
+    #transactionPage .transactionProductsWrapper .title {
+        flex-basis: 50%;
+    }
+
+    #newProductForm form {
+        width:  90%;
+    }
+
+    #newTransactionForm form {
+        width:  90%;
+    }
+    
+  }
+
+/* end mobile compatible styles */
+
+
+
+/* auth form clean ups  */
+
+#authWrapper .helptext {
+    display: none;
+}
+
+#authWrapper form p {
+    width : 80%;
+}
+
+#authWrapper ul {
+    display: none;
+}
+
+#authWrapper .errorlist {
+    display: flex;
+    width: 300px;
+    text-align: center;
+    color: red;
+    background: #d2b5b5;
+    border-radius: 10px;
+    flex-direction: column;
+}
+/*  end auth form cleanup */

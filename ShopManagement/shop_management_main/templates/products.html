@@ -19,6 +19,9 @@
         <div class="price">
           Price
         </div>
+        <div class="buy_price">
+          Cost
+        </div>
       </div>
         {% for product in products %}
         <div class="product">
@@ -28,6 +31,9 @@
           <div class="price">
               Rs {{ product.price }}
           </div>
+          <div class="buy_price">
+              Rs {{ product.buy_price }}
+        </div>
           </div>
         {% endfor %}
     </div>
