@@ -15,9 +15,12 @@
       <div class="transactionProductsHeader">
         <div class="title">Products</div>
         <div class="makeNewTransactionWrapper">
+            <!-- if not todays transaction, dont let them add new -->
+          {% if t_day == current_day %}
           <button id="makeNewTransactionButton">
               <i class="material-icons">add</i>
           </button>
+          {% endif %}
           <!-- <button id='openNewProductForm'>
               <i class="material-icons">add</i>
         </button> -->
@@ -40,7 +43,7 @@
     </div>
 
 
-<!-- 
+<!--
     <p>Add a new Transaction:</p>
 
     <form action = "{% url 'shop_management_main:new_transaction' day.id %}"
@@ -51,6 +54,7 @@
     </form>
   </div> -->
 
+{% if t_day == current_day %}
   <div id="newTransactionForm">
       <form action = "{% url 'shop_management_main:new_transaction' day.id %}"
         method = 'post'>
@@ -65,13 +69,12 @@
         <button name = "submit">Add Transaction</button>
     </form>
   </div>
-  
-  
+{% endif %}
+
   <script src='{% static 'transactions.js' %}' ></script>
   <script src='{% static 'linkListeners.js' %}' ></script>
 
 <script src='{% static 'newProductToggler.js' %}' ></script>
-  
+
 
 {% endblock content %}
-

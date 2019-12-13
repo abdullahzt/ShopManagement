@@ -3,6 +3,7 @@ from .models import Product, TransactionDay
 from .forms import ProductForm, TransactionForm, Transaction
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from datetime import date
 
 @login_required
 def index(request):
@@ -89,6 +90,7 @@ def transactions(request, transaction_day_id):
     """A page that shows transactions of a particular day."""
     day = TransactionDay.objects.get(id=transaction_day_id)
     sum = day.sum
+    current_day = str(date.today().strftime('%Y-%m-%d'))
     user_check(request, day)
     transactions = day.transaction_set.all()
 
@@ -129,7 +131,9 @@ def transactions(request, transaction_day_id):
     context = {
         'transactions' : transactions,
         'day' : day,
-        'form' : form
+        'form' : form,
+        'current_day' : current_day,
+         't_day' : str(day)
         }
     return render(request, 'transactions.html', context)
 
@@ -171,8 +175,10 @@ def new_transaction(request, transaction_day_id):
         }
     return render(request, 'new_transaction.html', context)
 
+@login_required
 def p_summary(request, product_id):
     product = Product.objects.get(id=product_id)
+    user_check(request, product)
     transaction = product.transaction_set.all()
     context ={
         'product': product,
