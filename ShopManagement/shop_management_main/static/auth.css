@@ -1,5 +1,8 @@
 #authBody {
-    background: url('https://ak5.picdn.net/shutterstock/videos/1018020805/thumb/1.jpg');
+    /* background: url('https://ak5.picdn.net/shutterstock/videos/1018020805/thumb/1.jpg'); */
+    background: url('https://www.templatemonster.com/bwp-content/uploads/2012/01/1Gradient.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     background-repeat: no-repeat;
     background-size: cover;
 }

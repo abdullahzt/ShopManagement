@@ -4,6 +4,11 @@
     background-color: whitesmoke;
 } */
 
+#brand-logo{
+    padding-left: 10;
+}
+
+
 
 .sidenav {
     background: url(https://www.3ctele.com/wp-content/uploads/2015/12/3c-gradient-background.png);
@@ -519,6 +524,7 @@ select {
 
     display: flex;
     flex-direction: column;
+    background-color: whitesmoke;
     /* padding: 10px; */
 
 }
@@ -569,7 +575,21 @@ select {
 
 /* graph styling */
 canvas {
-    background: url('https://cdn.pixabay.com/photo/2016/08/05/09/31/banner-1571861_960_720.jpg');
+
+    background: url('https://img.pngio.com/how-to-add-gridlines-to-a-scene-help-center-grid-lines-png-1024_768.png');
+    background-size: cover;
+    background-position-x: 50px;
+    background-repeat: no-repeat;
+    background-position-y: -230px;
+
+    /* background: url('https://cdn.pixabay.com/photo/2016/08/05/09/31/banner-1571861_960_720.jpg'); */
+
+    /* background: url('https://cdn2.vectorstock.com/i/1000x1000/37/76/graph-paper-background-vector-1303776.jpg');
+    /* background-size: auto; */
+    /* background-position-y: -50px;
+    background-position-x: 20px; */ 
+    /* background : url('http://www.pptbackgrounds.org/uploads/light-blue-simple-graph-powerpoint-templates.jpg'); */
+
 }
 
 /* end graph styling */
@@ -650,6 +670,11 @@ canvas {
 /* mobile compatible styles */
 
 @media only screen and (max-width: 600px) {
+
+    #brand-logo{
+        padding: 0;
+    }
+
     #mainDashboard #mainStatistics {
     font-size: small;
     }
